@@ -1,0 +1,43 @@
+.hero
+    border-radius: 4px
+    background-color: $bg
+    background-position: center
+    background-size: cover
+    padding: 40px 30px
+    position: relative
+    overflow: hidden
+    +lg
+        padding: 30px 20px
+    +sm
+        padding: 20px
+    &-bg
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+        width: 100%
+        height: 100%
+        opacity: 0.7
+        object-fit: cover
+        object-position: center
+    &-inner
+        display: flex
+        flex-wrap: wrap
+        align-items: center
+        justify-content: space-between
+        position: relative
+        z-index: 2
+    &-title
+        +sm
+            margin-bottom: 20px
+        h4, h5, .h5, .h4
+            line-height: 1
+    &-title, &-controls
+        width: 50%
+        +sm
+            width: 100%
+    &-controls
+        text-align: right
+        +sm
+            text-align: left

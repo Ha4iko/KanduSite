@@ -1,0 +1,194 @@
+.dropdown
+    position: relative
+    font-size: 21px
+    +lg
+        font-size: 18px
+    +md
+        font-size: 14px
+    &.active
+        .dropdown
+            &-result
+                &__text
+                    color: $primary
+                &__icon .icon
+                    fill: $text
+                    transform: scale(1, -1)
+            &-box
+                opacity: 1
+                visibility: visible
+    &--sm
+        font-size: 18px
+        +lg
+            font-size: 14px
+        .dropdown
+            &-link
+                font-size: 16px
+                +lg
+                    font-size: 12px
+            &-box
+                +lg
+                    padding: 5px 10px
+            &-link
+                +lg
+                    padding: 5px 0
+            &-result
+                &__icon
+                    +lg
+                        width: 26px
+                        height: 26px
+                        padding-left: 5px
+                        .icon
+                            width: 16px
+                            height: 16px
+    &--xs
+        font-size: 14px
+        +lg
+            font-size: 12px
+        +md
+            font-size: 10px
+        .dropdown
+            &-link
+                font-size: 18px
+                +lg
+                    font-size: 14px
+                +md
+                    font-size: 12px
+            &-result
+                &__icon
+                    width: 26px
+                    height: 26px
+                    padding-left: 5px
+                    +md
+                        width: 20px
+                        height: 20px
+                    .icon
+                        width: 16px
+                        height: 16px
+                        +md
+                            width: 12px
+                            height: 12px
+    &-result
+        display: flex
+        align-items: center
+        cursor: pointer
+        &:hover
+            .dropdown-result
+                &__text
+                    color: $primary
+                &__icon .icon
+                    fill: $text
+        &__media
+            width: 60px
+            height: 60px
+            position: relative
+            border-radius: 50%
+            overflow: hidden
+            background-color: $bg2
+            display: flex
+            align-items: center
+            justify-content: center
+            padding: 7px
+            +md
+                width: 40px
+                height: 40px
+        &__bg
+            width: 100%
+            height: 100%
+            position: absolute
+            top: 0
+            bottom: 0
+            left: 0
+            right: 0
+            object-fit: cover
+            object-position: center
+        &__text
+            color: $text
+            text-transform: uppercase
+            transition: $tr
+            font-family: $r-b
+        &__icon
+            width: 30px
+            height: 30px
+            padding-left: 10px
+            display: flex
+            align-items: center
+            +md
+                width: 17px
+                height: 17px
+                padding-left: 5px
+            .icon
+                width: 20px
+                height: 20px
+                pointer-events: none
+                fill: $primary
+                transition: $tr
+                +md
+                    width: 12px
+                    height: 12px
+    &-box
+        box-shadow: 0px 0px 40px #000000
+        border-radius: 4px
+        background-color: $text
+        padding: 10px 20px
+        position: fixed
+        opacity: 0
+        visibility: hidden
+        z-index: 20
+        +md
+            padding: 5px 10px
+        +sm
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            box-shadow: none
+            background-color: $bg
+            width: 100%
+            height: 100%
+            display: flex
+            flex-direction: column
+            padding: 0
+        &.bottom
+            +sm
+                top: 0
+        &.top
+            +sm
+                bottom: 0
+        &__inner
+            +sm
+                padding: 0 20px 20px
+                overflow-y: auto
+                -webkit-overflow-scrolling: touch
+                width: 100%
+                flex-grow: 1
+    &-items
+        border-bottom: 2px solid $bg2
+        margin-bottom: 10px
+        padding-bottom: 10px
+        +md
+            margin-bottom: 5px
+            padding-bottom: 5px
+        &:last-child
+            margin-bottom: 0
+            padding-bottom: 0
+            border: 0
+    &-item
+        display: flex
+        align-items: center
+        &:last-child
+            margin-bottom: 0
+    &-link
+        padding: 10px 0
+        color: $bg
+        text-transform: uppercase
+        line-height: 1
+        font-family: $r-b
+        white-space: nowrap
+        +md
+            padding: 5px 0
+        +sm
+            color: $text
+            line-height: 1.5
+            font-size: 18px
+        &:hover, &.active
+            color: $primary

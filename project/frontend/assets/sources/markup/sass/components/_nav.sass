@@ -1,0 +1,136 @@
+.nav
+    border-bottom: 2px solid $bg2
+    &.droped
+        position: relative
+        z-index: 12
+    &--sm
+        .nav
+            &-link
+                font-size: 14px
+                padding: 22px 0
+                +lg
+                    font-size: 12px
+                    padding: 15px 0
+                +md
+                    font-size: 10px
+                    padding: 10px 0
+    &-container
+        display: flex
+        align-items: center
+        margin: 0 -20px
+        &:after, &:before
+            content: ''
+            width: 20px
+            height: 20px
+            flex: 0 0 20px
+            display: block
+    &-list
+        display: flex
+        align-items: center
+    &-controls
+        display: flex
+        align-items: center
+        margin-left: auto
+        padding-left: 30px
+        +lg
+            padding-left: 20px
+        .btn
+            white-space: nowrap
+    &-btns
+        padding: 13px 0
+        margin-left: 30px
+        +lg
+            margin-left: 20px
+        +md
+            padding: 10px 0
+            margin-left: 10px
+        &:first-child
+            margin-left: 0
+    &-item
+        margin-right: 30px
+        white-space: nowrap
+        +lg
+            margin-right: 20px
+        +md
+            margin-right: 10px
+        &:last-child
+            margin-right: 0
+    &-drops
+        display: flex
+        align-self: stretch
+    &-drop
+        position: relative
+        display: flex
+        align-items: center
+        &:after
+            content: ''
+            height: 2px
+            width: calc(100% - 26px)
+            background-color: $primary
+            position: absolute
+            left: 0
+            bottom: 0
+            transform: scale(0)
+            transition: $tr
+            +md
+                width: calc(100% - 20px)
+        &.active
+            &:after
+                transform: scale(1)
+        .dropdown
+            &.active
+                .dropdown-result
+                    &__text
+                        color: $text
+                    &__icon .icon
+                        fill: $text
+            &-result
+                height: 60px
+                +lg
+                    height: 50px
+                +md
+                    height: 40px
+                &:hover
+                    .dropdown-result
+                        &__text
+                            color: $text
+                        &__icon .icon
+                            fill: $primary
+                &__text
+                    &:hover
+                        // color: $primary!important
+                &__icon
+                    &:hover
+                        .icon
+                            fill: $text!important
+    &-link
+        white-space: nowrap
+        color: $text2
+        text-transform: uppercase
+        padding: 30px 0
+        font-size: 18px
+        line-height: 1
+        font-family: $r-b
+        display: inline-flex
+        position: relative
+        +lg
+            padding: 20px 0
+            font-size: 14px
+        +md
+            padding: 14px 0
+            font-size: 12px
+        &:after
+            content: ''
+            width: 100%
+            height: 2px
+            position: absolute
+            bottom: 0
+            left: 0
+            right: 0
+            background-color: $primary
+            transform: scale(0)
+            transition: $tr
+        &.active, &:hover
+            color: $text
+            &:after
+                transform: scale(1)

@@ -1,0 +1,90 @@
+.video
+    border-radius: 20px
+    overflow: hidden
+    display: flex
+    align-items: center
+    position: relative
+    &.active
+        .video
+            &-content
+                opacity: 1
+            &-btn
+                opacity: 0
+                z-index: -1
+                visibility: hidden
+    &-btn
+        position: absolute
+        z-index: 3
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+        margin: auto
+        width: 116px
+        height: 85px
+        border-left: 2px solid $primary
+        border-radius: 5px
+        display: flex
+        align-items: center
+        justify-content: center
+        background-color: $bg
+        cursor: pointer
+        transition: $tr
+        +md
+            width: 62px
+            height: 50px
+        &:hover
+            .icon
+                fill: $primary
+        .icon
+            fill: $text
+            width: 55px
+            height: 55px
+            transition: $tr
+            +md
+                width: 32px
+                height: 32px
+    &-bg
+        width: 100%
+        position: relative
+        padding-bottom: 69%
+        img
+            position: absolute
+            top: 0
+            bottom: 0
+            left: 0
+            right: 0
+            width: 100%
+            height: 100%
+            object-fit: cover
+            object-position: center
+        &:after
+            content: ''
+            position: absolute
+            left: 0
+            right: 0
+            bottom: 0
+            width: 100%
+            height: 50%
+            background: linear-gradient(180deg, rgba(25, 25, 25, 0) 0%, #191919 100%)
+    &-content
+        position: absolute
+        z-index: 2
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+        width: 100%
+        height: 100%
+        opacity: 0
+        transition: $tr
+        video
+            position: absolute
+            top: 0
+            bottom: 0
+            left: 0
+            right: 0
+            width: 100%
+            height: 100%
+            object-fit: cover
+            object-position: center

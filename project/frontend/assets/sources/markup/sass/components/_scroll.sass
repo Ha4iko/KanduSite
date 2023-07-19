@@ -1,0 +1,26 @@
+.simplebar
+    &-content-wrapper
+        &::-webkit-scrollbar
+            display: none
+    &-track
+        &.simplebar
+            &-horizontal
+                opacity: 0
+            &-vertical
+                width: 12px
+                .simplebar
+                    &-scrollbar
+                        &:before
+                            top: 4px
+                            margin: auto
+                            bottom: 4px
+                            width: 4px
+                            border-radius: 0
+                            background-color: $text2
+                            opacity: 1
+                            box-sizing: border-box
+                            transition: $tr
+                    &-visible
+                        &:before
+                            background-color: $bg
+                            transform: scaleX(2)

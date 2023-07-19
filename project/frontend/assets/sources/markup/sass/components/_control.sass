@@ -1,0 +1,98 @@
+.control
+    display: flex
+    flex-wrap: wrap
+    align-items: flex-start
+    margin-bottom: 20px
+    &:last-child
+        margin-bottom: 0
+    &--top
+        .control
+            &-side
+                min-height: 0
+                align-items: flex-start
+    &-side
+        width: 33.333%
+        min-height: 48px
+        display: flex
+        align-items: center
+        +lg
+            min-height: 36px
+        +sm
+            width: 100%
+            min-height: 0
+            margin-bottom: 10px
+        .prop
+            span
+                color: $primary
+    &-content
+        width: 66.666%
+        display: flex
+        +sm
+            width: 100%
+    &-info
+        &__value
+            margin-bottom: 10px
+            +sm
+                margin-bottom: 5px
+            span:not(.error)
+                color: $success
+    &-sort
+        width: 30px
+        display: flex
+        align-items: center
+        .sort
+            width: 30px
+            flex: 0 0 30px
+    &-fields
+        display: flex
+        flex-wrap: wrap
+        margin: -15px
+        flex-grow: 1
+        +lg
+            margin: -10px
+    &-field
+        width: calc(100% - 30px)
+        margin: 15px
+        +lg
+            margin: 10px
+            width: calc(100% - 20px)
+        &--sm
+            width: 170px
+            +sm
+                width: calc(100% - 20px)
+        &__hint
+            width: calc(100% - 30px)
+            margin: -5px 15px 15px
+            +lg
+                width: calc(100% - 20px)
+                margin: 0 10px 10px
+    &-main
+        width: 100%
+    &-file
+        &__bg
+            transition: $tr
+            position: relative
+            opacity: 0
+            &.active
+                opacity: 1
+                margin-top: 30px
+                padding-bottom: 33.333%
+            img
+                position: absolute
+                top: 0
+                left: 0
+                right: 0
+                bottom: 0
+                width: 100%
+                height: 100%
+                object-fit: cover
+                object-position: center top
+        &__field
+            display: none
+        &__btn
+            display: inline-flex
+            +sm
+                width: 100%
+            .btn
+                +sm
+                    width: 100%

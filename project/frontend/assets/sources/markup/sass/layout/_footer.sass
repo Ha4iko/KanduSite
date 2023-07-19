@@ -1,0 +1,58 @@
+.footer
+    border-top: 2px solid $bg2
+    &-container
+        display: flex
+        align-items: center
+        padding: 60px 0
+        +lg
+            padding: 30px 0
+        +md
+            padding: 20px 0
+        +sm
+            align-items: flex-start
+    &-logo
+        width: 90px
+        flex: 0 0 90px
+        margin-right: 60px
+        +lg
+            margin-right: 30px
+        +md
+            width: 60px
+            flex: 0 0 60px
+    &-content
+        flex-grow: 1
+        display: flex
+        align-items: center
+        justify-content: space-between
+        +sm
+            display: block
+    &-menu
+        +sm
+            margin-bottom: 10px
+        &__list
+            display: flex
+            align-items: center
+            +sm
+                display: block
+                margin-top: -10px
+        &__item
+            margin-right: 30px
+            +lg
+                margin-right: 20px
+            +md
+                margin-right: 
+            &:last-child
+                margin-right: 0
+        &__link
+            font-size: 18px
+            text-transform: uppercase
+            color: $text2
+            font-family: $r-b
+            +lg
+                font-size: 14px
+            +md
+                font-size: 12px
+                padding: 7px 0
+                display: inline-flex
+            &.active, &:hover
+                color: $primary

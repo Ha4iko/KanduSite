@@ -1,0 +1,82 @@
+.prizes
+    &--sm
+        display: flex
+        flex-wrap: wrap
+        margin: -15px
+        +md
+            margin: -10px
+        .prize
+            width: calc(33.333% - 30px)
+            margin: 15px
+            &:last-child
+                margin: 15px
+                +md
+                    margin: 10px
+            +md
+                width: calc(33.333% - 20px)
+                margin: 10px
+            +sm
+                width: calc(100% - 20px)
+            &-content
+                text-align: left
+            &-value
+                margin-bottom: 30px
+                +sm
+                    margin-bottom: 20px
+            &-inner
+                +sm
+                    padding: 15px 20px
+    &--admin
+        align-items: center
+        margin-bottom: 15px
+        &:last-child
+            margin-bottom: -15px
+        .prizes
+            &-select
+                width: calc(33.333% - 30px)
+                margin: 15px
+                +sm
+                    width: calc(100% - 20px)
+                    margin: 10px
+
+.prize
+    position: relative
+    overflow: hidden
+    border-radius: 4px
+    margin-bottom: 30px
+    background-color: $bg2
+    +md
+        margin-bottom: 20px
+    &:last-child
+        margin-bottom: 0
+    &-img
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+        width: 100%
+        height: 100%
+        object-fit: cover
+        object-position: center
+        opacity: 0.7
+    &-inner
+        position: relative
+        z-index: 2
+        padding: 25px 30px
+        display: flex
+        align-items: center
+        justify-content: space-between
+        height: 100%
+        +lg
+            padding: 15px 20px
+        +sm
+            display: block
+            padding: 20px
+    &-participant
+        +sm
+            margin-bottom: 20px
+    &-content
+        text-align: right
+        +sm
+            text-align: left

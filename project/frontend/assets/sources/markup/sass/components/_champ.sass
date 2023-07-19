@@ -1,0 +1,174 @@
+.champs
+    margin: -45px -15px
+    +md
+        margin: -20px -10px
+    +sm
+        margin: 0 -20px
+    &--lg
+        +sm
+            margin: 0 -10px -30px
+        .champs-inner
+            flex-wrap: wrap
+            &:after, &:before
+                content: none
+        .champs-item
+            width: calc(33.333% - 30px)
+            +md
+                width: calc(33.333% - 20px)
+            +sm
+                flex: 0 0 auto
+                margin: 0 10px 30px
+                width: calc(50% - 20px)
+            +mob
+                width: calc(100% - 20px)
+    &-inner
+        display: flex
+        flex-wrap: wrap
+        +sm
+            flex-wrap: nowrap
+            &:after, &:before
+                content: ''
+                width: 20px
+                flex: 0 0 20px
+                display: block
+    &-item
+        width: calc(25% - 30px)
+        margin: 45px 15px
+        +md
+            width: calc(25% - 20px)
+            margin: 20px 10px
+        +sm
+            width: 227px
+            flex: 0 0 227px
+            margin: 0 20px 0 0
+            &:last-child
+                margin-right: 0
+    &-head
+        position: relative
+        height: 100%
+        &:after
+            content: ''
+            position: absolute
+            z-index: 2
+            bottom: 0
+            left: 0
+            right: 0
+            width: 100%
+            height: 50%
+            background: linear-gradient(180deg, rgba(25, 25, 25, 0) 0%, #191919 100%)
+        &__media, &__img
+            position: absolute
+            z-index: 1
+            top: 0
+            left: 0
+            bottom: 0
+            width: 100%
+            height: 100%
+        &__img
+            left: -40px
+            width: calc(100% + 80px)
+            max-width: inherit
+            object-fit: contain
+            object-position: bottom left
+            +lg
+                width: calc(100% + 70px)
+                left: -30px
+            +md
+                width: calc(100% + 40px)
+                left: -10px
+        &__content
+            display: flex
+            flex-direction: column
+            justify-content: flex-end
+            align-items: flex-start
+            position: relative
+            z-index: 3
+            height: 100%
+
+.champ
+    &:hover
+        .champ
+            &-img
+                transform: scale(1.1)
+            &-title
+                color: $primary
+    &-participant
+        border-bottom: 2px solid $primary
+        padding-bottom: 20px
+        margin-bottom: 20px
+        +lg
+            padding-bottom: 10px
+            margin-bottom: 10px
+        .participant
+            +lg
+                min-height: 36px
+            &-avatar
+                +lg
+                    width: 36px
+                    height: 36px
+                    flex: 0 0 36px
+            &-title
+                +lg
+                    margin-bottom: 2px
+    &-media
+        margin-bottom: 20px
+        height: 120px
+        border-radius: 5px
+        overflow: hidden
+        +lg
+            height: 94px
+            margin-bottom: 10px
+        +md
+            height: 60px
+    &-img
+        border-radius: 5px
+        width: 100%
+        height: 100%
+        object-fit: cover
+        object-position: center
+        transition: $tr
+    &-info
+        margin-bottom: 20px
+        +lg
+            margin-bottom: 10px
+        .prop
+            margin-bottom: 5px
+            &:last-child
+                margin-bottom: 0
+    &-title
+        margin-bottom: 5px
+        transition: $tr
+    &-prize
+        height: 60px
+        padding: 0 35px
+        display: inline-flex
+        align-items: center
+        position: relative
+        +lg
+            height: 48px
+            padding: 0 28px
+        +md
+            height: 36px
+            padding: 0 21px
+        &:after, &:before
+            content: ''
+            width: 34px
+            height: 60px
+            background-image: url('../images/award.svg')
+            background-repeat: no-repeat
+            background-size: contain
+            background-position: center
+            position: absolute
+            top: 0
+            bottom: 0
+            +lg
+                height: 48px
+                width: 27px
+            +md
+                height: 36px
+                width: 20px
+        &:after
+            right: 0
+            transform: scaleX(-1)
+        &:before
+            left: 0

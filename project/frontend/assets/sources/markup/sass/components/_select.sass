@@ -1,0 +1,305 @@
+.select2
+    &-selection
+        outline: 0!important
+        &.style-1
+            background-color: transparent
+            border: 0
+            display: flex
+            align-items: center
+            .select2
+                &-selection
+                    &__placeholder
+                        color: $text2
+                    &__rendered
+                        font-size: 14px
+                        font-family: $r-b
+                        padding: 0 26px 0 0
+                        +lg
+                            font-size: 12px
+                        +md
+                            padding: 0 20px 0 0
+                    &__arrow
+                        &:before
+                            opacity: 0
+        &.style-2
+            background-color: $bg3
+            border: 1px solid $bg3
+            display: flex
+            align-items: center
+            border-radius: 5px!important
+            height: 48px
+            transition: $tr
+            &:hover
+                border-color: $primary!important
+            +lg
+                height: 36px
+            .select2
+                &-selection
+                    &__placeholder
+                        color: $text2
+                    &__rendered
+                        font-size: 18px
+                        font-family: $mainFont
+                        padding: 0 56px 0 20px
+                        +lg
+                            padding: 0 46px 0 10px
+                            font-size: 14px
+                        +md
+                            padding: 0 36px 0 10px
+                            font-size: 12px
+                    &__arrow
+                        right: 20px
+                        +lg
+                            right: 10px
+                        &:after
+                            opacity: 0
+        &__rendered, &__placeholder
+            transition: $tr
+        &__arrow
+            &:after, &:before
+                transition: $tr
+    &-container
+        .select2
+            &-dropdown
+                border: 0
+                box-shadow: 0px 0px 40px #000000
+                border-radius: 4px
+                background-color: $text
+                opacity: 0
+                transition: opacity $tr
+                +sm
+                    box-shadow: none
+                    background-color: $bg
+                    border-radius: 0
+                    opacity: 1
+                    height: 100%
+                    max-height: 100%
+                &.active
+                    opacity: 1
+                &--below
+                    transform: translateY(1px)
+                &--above
+                    transform: translateY(-1px)
+            &-results
+                overflow-x: hidden
+                max-height: 210px
+                min-width: 100%
+                +sm
+                    max-height: 100%
+                    height: 100%
+                    overflow-y: auto
+                    -webkit-overflow-scrolling: touch
+                &__options
+                    max-height: none!important
+                    overflow: hidden
+                    padding: 10px 20px
+                    min-width: 100%
+                    +lg
+                        padding: 5px 10px
+                    +sm
+                        padding: 5px 20px
+                &__option
+                    background-color: transparent!important
+                    color: $bg
+                    text-transform: uppercase
+                    line-height: 1
+                    font-family: $r-b
+                    padding: 10px 0
+                    margin: 0
+                    white-space: nowrap
+                    transition: $tr
+                    +lg
+                        padding: 5px 0
+                    +sm
+                        color: $text
+                        font-size: 18px
+                        line-height: 1.5
+                    &:last-child
+                        margin-bottom: 0
+                    &:hover
+                        color: $primary!important
+                    &--highlighted
+                        color: $bg!important
+                        +sm
+                            color: $text!important
+                    &--selected
+                        color: $primary!important
+            &-selection
+                .select2-selection
+                    &__rendered
+                        color: $text
+                        text-transform: uppercase
+                        line-height: 1
+                    &__arrow
+                        width: 16px
+                        height: 16px
+                        margin: auto
+                        top: 0
+                        bottom: 0
+                        transition: $tr
+                        +lg
+                            width: 14px
+                            height: 14px
+                        +md
+                            width: 12px
+                            height: 12px
+                        &:after, &:before
+                            content: ''
+                            width: 100%
+                            height: 100%
+                            background-size: contain
+                            background-position: center
+                            background-repeat: no-repeat
+                            position: absolute
+                            top: 0
+                            bottom: 0
+                            left: 0
+                            right: 0
+                            transition: $tr
+                        &:after
+                            background-image: url('../images/chevron-primary.svg')
+                        &:before
+                            background-image: url('../images/chevron-white.svg')
+                        b
+                            display: none
+.select
+    display: flex
+    align-items: center
+    &--sm
+        .select2
+            &-selection
+                &.style-2
+                    height: 32px
+                    +lg
+                        height: 24px
+                    +md
+                        height: 18px
+                    .select2
+                        &-selection
+                            &__rendered
+                                font-size: 14px
+                                padding: 0 56px 0 10px
+                                +lg
+                                    padding: 0 46px 0 10px
+                                    font-size: 12px
+                                +md
+                                    padding: 0 36px 0 10px
+                                    font-size: 10px
+                            &__arrow
+                                right: 10px
+                                width: 16px
+                                height: 10px
+                                +md
+                                    width: 12px
+                                    height: 8px
+            &-results
+                &__option
+                    padding: 5px 0
+                    font-size: 14px
+                    &:last-child
+                        margin-bottom: 0
+                    +lg
+                        font-size: 12px
+                    +md
+                        padding: 3px 0
+                        font-size: 10px
+                    +sm
+                        font-size: 14px
+                        padding: 5px 0
+                &__options
+                    padding: 5px 10px
+                    +sm
+                        padding: 5px 20px
+    &--md
+        .select2
+            &-selection
+                &.style-2
+                    height: 32px
+                    .select2
+                        &-selection
+                            &__rendered
+                                font-size: 14px
+                                padding: 0 56px 0 10px
+                                +lg
+                                    padding: 0 46px 0 10px
+                                    font-size: 12px
+                                +md
+                                    padding: 0 36px 0 10px
+                            &__arrow
+                                right: 10px
+            &-results
+                &__option
+                    padding: 5px 0
+                    font-size: 14px
+                    &:last-child
+                        margin-bottom: 0
+                    +lg
+                        font-size: 12px
+                    +sm
+                        font-size: 14px
+                &__options
+                    padding: 5px 10px
+                    +sm
+                        padding: 5px 20px
+    &.active
+        .select2-selection
+            &.style-2
+                border-color: $primary
+            &.style-1
+                .select2-selection
+                    &__rendered, &__placeholder
+                        color: $primary!important
+            &__arrow
+                transform: scale(1, -1)
+                &:before
+                    opacity: 1
+                &:after
+                    opacity: 0
+        .select
+            &-drop
+                +sm
+                    z-index: 100
+                    visibility: visible
+                    opacity: 1
+    &.disabled
+        opacity: .2
+        pointer-events: none
+    &-btn
+        display: flex
+        align-items: center
+        width: 100%
+        &:hover
+            .select2-selection
+                &.style-1
+                    .select2-selection
+                        &__rendered, &__placeholder
+                            color: $primary!important
+            .select2
+                &-selection
+                    &__arrow
+                        &:before
+                            opacity: 1
+                        &::after
+                            opacity: 0
+    &-drop
+        display: none
+        +sm
+            display: block
+            position: fixed
+            left: 0
+            right: 0
+            top: 0
+            bottom: none
+            height: 100%
+            width: 100%
+            display: flex
+            background-color: $bg
+            flex-direction: column
+            opacity: 0
+            visibility: hidden
+            z-index: -1
+            transition: opacity $tr, visibility $tr, z-index $tr
+            .select2-container
+                position: static!important
+                flex-grow: 1
+                width: 100%

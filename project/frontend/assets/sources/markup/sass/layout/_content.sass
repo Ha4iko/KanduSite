@@ -1,0 +1,22 @@
+.content
+    &-block
+        +defaultOffset('margin', 'bottom')
+        +defaultOffset('padding', 'bottom')
+        border-bottom: 2px solid $bg2
+        &:last-child
+            padding-bottom: 0
+            border: 0
+        &__title
+            +defaultOffset('margin', 'bottom')
+    &-container, &-container--sm
+        +defaultOffset('margin', 'bottom')
+        h4, h5, .h4, .h5
+            margin-bottom: 30px
+            +sm
+                margin-bottom: 20px
+        &--sm
+            width: 66.666%
+            margin-left: auto
+            margin-right: auto
+            +sm
+                width: 100%

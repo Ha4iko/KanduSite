@@ -1,0 +1,34 @@
+@import "../sources/sass/abstracts/vars"
+
+.waiting
+  opacity: 0.5
+  pointer-events: none
+
+input.has-error
+  border-color: #DF0D14 !important
+
+.add-cell
+  &.error
+
+    .datepicker-el__btn
+      border: 1px solid #DF0D14 !important
+
+    .select2-selection
+      border-color: #DF0D14 !important
+
+    .field-error
+      border-color: #DF0D14 !important
+      display: block
+
+.control-field
+  &.error
+
+    .field
+      border: 2px solid $primary
+      color: $primary
+
+      &-error
+        color: $primary
+        margin-top: 5px
+        margin-left: 13px
+

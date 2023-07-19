@@ -1,0 +1,231 @@
+.chart
+    display: flex
+    width: 100%
+    margin-top: -20px
+    +lg
+        margin-top: -10px
+    &.scroll
+        .chart
+            &-head, &-content
+                scrollbar-width: none
+                overflow-x: auto
+                -webkit-overflow-scrolling: touch
+                &::-webkit-scrollbar
+                    display: none
+    &-sidebar
+        width: 270px
+        margin-right: 30px
+        padding-top: 120px
+        +lg
+            width: 210px
+            padding-top: 80px
+        +md
+            width: 130px
+        +sm
+            width: 165px
+            margin-right: 20px
+        +mob
+            width: 90px
+        &__item
+            padding: 20px 0
+            border-top: 1px solid $bg3
+            display: block
+            +lg
+                padding: 10px 0
+            &.hidden
+                display: none
+            &-title
+                line-height: 1
+                margin-bottom: 5px
+                +sm
+                    font-size: 10px
+            &-prop
+                +sm
+                    font-size: 10px
+                +mob
+                    font-size: 8px
+    &-main
+        width: calc(100% - 300px)
+        +lg
+            width: calc(100% - 240px)
+        +md
+            width: calc(100% - 160px)
+        +sm
+            width: calc(100% - 185px)
+        +mob
+            width: calc(100% - 110px)
+    &-wrapper
+        height: 100%
+    &-indicators
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+        height: 100%
+        width: 100%
+        display: flex
+    &-indicator
+        width: 40px
+        flex: 0 0 40px
+        border-left: 1px solid $bg3
+        position: relative
+        +lg
+            width: 34px
+            flex: 0 0 34px
+        +sm
+            width: 24px
+            flex: 0 0 24px
+        &.active
+            border-left: 2px solid $text
+            &:before
+                content: ''
+                width: 8px
+                height: 8px
+                border-radius: 50%
+                background-color: $text
+                position: absolute
+                top: 0
+                left: -5px
+    &-content
+        &__inner
+            position: relative
+    &-months
+        display: flex
+        height: 120px
+        padding-top: 20px
+        +lg
+            height: 80px
+            padding-top: 10px
+    &-month
+        &__title
+            margin-bottom: 15px
+            text-transform: uppercase
+            color: $text
+            font-family: $r-b
+            font-size: 14px
+            +lg
+                font-size: 12px
+                margin-bottom: 10px
+        &__days
+            display: flex
+    &-head
+        position: sticky
+        z-index: 2
+        top: 0
+        background-color: $bg
+    &-day
+        width: 40px
+        font-size: 12px
+        color: $text2
+        +lg
+            font-size: 10px
+            width: 34px
+        +sm
+            width: 24px
+        &__num
+            margin-bottom: 5px
+            font-family: $r-b
+            +lg
+                margin-bottom: 2px
+    &-rows
+        position: relative
+        z-index: 2
+    &-row
+        position: relative
+        &.hidden
+            display: none
+    &-event
+        background: url('../images/chart-lines.svg')
+        background-position: center
+        background-repeat: no-repeat
+        border-radius: 4px
+        height: 50px
+        width: 0
+        position: absolute
+        top: 0
+        bottom: 0
+        margin: auto
+        transition: .6s ease-in-out
+        +lg
+            height: 40px
+        +sm
+            height: 30px
+        +mob
+            height: 20px
+        &:after, &:before
+            content: ''
+            position: absolute
+            top: 0
+            bottom: 0
+            left: 0
+            right: 0
+            width: 100%
+            height: 100%
+            border-radius: 4px
+            z-index: -2
+            transition: $tr
+        &:before
+            z-index: -1
+            opacity: 0
+            background-color: #fff
+        &--green
+            &:after
+                background-color: $chartGreen
+            &.chart-event--half
+                &:after
+                    background: linear-gradient(90deg, #5CDCAE 0%, rgba(92, 220, 174, 0) 100%)
+        &--purple
+            &:after
+                background-color: $chartPurple
+            &.chart-event--half
+                &:after
+                    background: linear-gradient(90deg, #B0AEFF 0%, rgba(176, 174, 255, 0) 100%)
+        &:hover
+            &:after
+                // opacity: 0
+            &:before
+                opacity: 1
+        &--half
+            &:before
+                background: linear-gradient(90deg, #fff 0%, rgba(176, 174, 255, 0) 100%)
+    &-drop
+        background: $bg2
+        border-radius: 4px
+        padding: 20px
+        max-width: 450px
+        min-width: 350px
+        +lg
+            max-width: 350px
+            min-width: 250px
+            padding: 10px
+        +md
+            max-width: inherit
+            min-width: inherit
+            width: 250px
+        +sm
+            padding: 5px
+            width: 180px
+        &__title
+            margin-bottom: 20px
+            +lg
+                margin-bottom: 10px
+        &__item
+            margin-bottom: 10px
+            display: flex
+            &:last-child
+                margin-bottom: 0
+            +lg
+                margin-bottom: 5px
+        &__value
+            color: $text
+            width: 65%
+            padding-left: 20px
+            +lg
+                padding-left: 10px
+            +md
+                font-size: 10px
+        &__prop
+            width: 35%
+            +md
+                font-size: 10px

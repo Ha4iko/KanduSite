@@ -1,0 +1,20 @@
+Options +FollowSymLinks
+IndexIgnore */*
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} ^/adminx42vcx
+RewriteRule ^adminx42vcx\/?(.*) /project/backend/web/$1
+
+RewriteCond %{REQUEST_URI} !^/(project/frontend/web|project/backend/web|adminx42vcx)
+RewriteRule (.*) /project/frontend/web/$1
+
+RewriteCond %{REQUEST_URI} ^/project/frontend/web
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /project/frontend/web/index.php
+
+RewriteCond %{REQUEST_URI} ^/project/backend/web
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /project/backend/web/index.php
+

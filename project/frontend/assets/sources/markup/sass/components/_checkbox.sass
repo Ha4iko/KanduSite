@@ -1,0 +1,123 @@
+.checkbox
+    transition: $tr
+    &.disabled
+        opacity: 0.2
+        pointer-events: none
+    &--toggler
+        .checkbox
+            &-text
+                color: $primary
+            &-content
+                &:hover
+                    .checkbox
+                        &-text
+                            color: $text
+            &-input
+                &:checked
+                    &+.checkbox-content
+                        &:hover
+                            .checkbox
+                                &-text
+                                    color: $primary
+                        .checkbox
+                            &-text
+                                color: $text
+    &--indicator
+        &-green, &-purple
+            .checkbox-text
+                padding-left: 22px
+                position: relative
+                &:before
+                    content: ''
+                    width: 12px
+                    height: 12px
+                    border-radius: 4px
+                    position: absolute
+                    left: 0
+                    top: 0
+                    bottom: 0
+                    margin: auto
+        &-green
+            .checkbox-text:before
+                background-color: $chartGreen
+        &-purple
+            .checkbox-text:before
+                background-color: $chartPurple
+
+    &-input
+        display: none
+        &:checked
+            &+.checkbox-content
+                .checkbox
+                    &-style
+                        &:after
+                            transform: scale(1)
+    &-label
+        display: inline-flex
+    &-content
+        position: relative
+        padding-left: 34px
+        min-height: 24px
+        display: flex
+        align-items: center
+        cursor: pointer
+        +lg
+            min-height: 18px
+            padding-left: 28px
+        &:hover
+            .checkbox
+                &-text
+                    color: $primary
+                &-style
+                    border-color: $primary
+    &-style
+        width: 24px
+        height: 24px
+        border-radius: 5px
+        background-color: $text
+        position: absolute
+        left: 0
+        top: 0
+        border: 1px solid $text
+        transition: $tr
+        +lg
+            width: 18px
+            height: 18px
+        &:after
+            content: ''
+            width: 16px
+            height: 12px
+            background-image: url('../images/check-primary.svg')
+            background-repeat: no-repeat
+            background-size: contain
+            background-position: center
+            position: absolute
+            top: 0
+            bottom: 0
+            left: 0
+            right: 0
+            margin: auto
+            transform: scale(0)
+            transition: $tr
+            +lg
+                width: 12px
+                height: 10px
+    &-text
+        color: $text
+        +fluidFontSize(10px, 14px, $xs, $xl)
+        transition: $tr
+
+.toggler
+    &.disabled
+        .toggler-content
+            opacity: .2
+            pointer-events: none
+    &-checkbox
+        margin-bottom: 30px
+        +lg
+            margin-bottom: 20px
+        &:last-child
+            margin-bottom: 0
+    &-content
+        padding-left: 30px
+        transition: $tr

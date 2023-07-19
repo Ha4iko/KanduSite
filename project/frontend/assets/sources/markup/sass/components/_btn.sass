@@ -1,0 +1,122 @@
+.btns
+    margin: -15px
+    display: flex
+    flex-wrap: wrap
+    &--sm
+        margin: -5px
+    .btn
+        margin: 15px
+        &--sm
+            margin: 5px
+
+.btn
+    height: 48px
+    padding: 0 30px
+    background-color: $text
+    border-radius: 5px
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    text-align: center
+    color: $bg
+    font-size: 18px
+    line-height: 1.2
+    text-transform: uppercase
+    font-family: $r-b
+    border: 0
+    outline: 0
+    border-left: 2px solid $primary
+    cursor: pointer
+    -webkit-backface-visibility: hidden
+    transition: $tr
+    +lg
+        height: 36px
+        padding: 0 20px
+        font-size: 14px
+    +md
+        font-size: 12px
+        padding: 0 10px
+        height: 24px
+    &:hover, &.active
+        color: $primary
+    &.disabled
+        opacity: 0.2
+        pointer-events: none
+    &:not(.btn--icon)
+        .icon
+            margin-left: 10px
+    .icon
+        width: 16px
+        height: 16px
+        fill: $bg
+        transition: $tr
+    &--dark
+        background-color: $bg2
+        color: #fff
+        border: 0
+        &:hover, &.active
+            background-color: $text
+        .icon
+            fill: $primary
+    &--sm
+        height: 32px
+        padding: 0 20px
+        font-size: 14px
+        +lg
+            height: 24px
+            font-size: 12px
+        +md
+            padding: 0 10px
+            height: 18px
+            font-size: 10px
+    &--md
+        height: 32px
+        padding: 0 20px
+        font-size: 14px
+        +lg
+            font-size: 12px
+    &--icon
+        width: 34px
+        height: 32px
+        padding: 0
+        +lg
+            width: 26px
+            height: 24px
+        +md
+            width: 20px
+            height: 18px
+        .icon
+            fill: $bg2
+            width: 16px
+            height: 16px
+            margin: 0!important
+            +md
+                width: 14px
+                height: 14px
+        &:hover
+            .icon
+                fill: $primary
+        &.active
+            .btn-icon
+                &--active
+                    opacity: 1
+                &--default
+                    opacity: 0
+    &-icon
+        position: relative
+        width: 16px
+        height: 16px
+        +md
+            width: 14px
+            height: 14px
+        &--active, &--default
+            display: flex
+            align-items: center
+            position: absolute
+            top: 0
+            bottom: 0
+            left: 0
+            right: 0
+            transition: $tr
+        &--active
+            opacity: 0

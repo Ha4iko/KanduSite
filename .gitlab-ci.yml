@@ -1,0 +1,85 @@
+stages:
+- build
+- deploy
+
+build:
+  stage: build
+  only:
+    refs:
+      - test
+      - demo
+      - production
+  image: artemryzhov/php-apache:7.3
+  artifacts:
+    paths:
+    - project/frontend/config/assets-prod.php
+    - project/frontend/web/dist
+  cache:
+    key: vendor-${CI_COMMIT_REF_SLUG}
+    paths:
+    - vendor
+  script:
+    - cd project
+    - php ./init --env=Development
+    - composer install
+    - composer run build
+    
+test_deploy:
+  image: alpine:latest
+  stage: deploy
+  only:
+    refs:
+    - test
+  script:
+  - 'which ssh-agent || ( apk --update add openssh-client bash )'
+  - mkdir -p ~/.ssh
+  - eval $(ssh-agent -s)
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  - bash -c 'ssh-add <(echo "$PRIVATE_KEY")'
+  - tar -czf /tmp/dist.tar.gz project/frontend/web/dist
+  - scp -P22 /tmp/dist.tar.gz $SSH_USER_TEST@$SSH_HOST_TEST:$SSH_REMOTE_DIR_TEST/dist.tar.gz
+  - scp -P22 project/frontend/config/assets-prod.php $SSH_USER_TEST@$SSH_HOST_TEST:$SSH_REMOTE_DIR_TEST/project/frontend/config/assets-prod.php
+  - ssh -p22 $SSH_USER_TEST@$SSH_HOST_TEST "cd $SSH_REMOTE_DIR_TEST && git pull"
+  - ssh -p22 $SSH_USER_TEST@$SSH_HOST_TEST "cd $SSH_REMOTE_DIR_TEST/project && composer install && ./yii migrate --interactive=0"
+  - ssh -p22 $SSH_USER_TEST@$SSH_HOST_TEST "rm -rf $SSH_REMOTE_DIR_TEST/project/frontend/web/dist && mkdir $SSH_REMOTE_DIR_TEST/project/frontend/web/dist && tar xzf $SSH_REMOTE_DIR_TEST/dist.tar.gz -C $SSH_REMOTE_DIR_TEST"
+  - ssh -p22 $SSH_USER_TEST@$SSH_HOST_TEST "cd $SSH_REMOTE_DIR_TEST/project && composer run flush"
+
+demo_deploy:
+  image: alpine:latest
+  stage: deploy
+  only:
+    refs:
+    - demo
+  script:
+  - 'which ssh-agent || ( apk --update add openssh-client bash )'
+  - mkdir -p ~/.ssh
+  - eval $(ssh-agent -s)
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  - bash -c 'ssh-add <(echo "$PRIVATE_KEY")'
+  - tar -czf /tmp/dist.tar.gz project/frontend/web/dist
+  - scp -P22 /tmp/dist.tar.gz $SSH_USER_DEMO@$SSH_HOST_DEMO:$SSH_REMOTE_DIR_DEMO/dist.tar.gz
+  - scp -P22 project/frontend/config/assets-prod.php $SSH_USER_DEMO@$SSH_HOST_DEMO:$SSH_REMOTE_DIR_DEMO/project/frontend/config/assets-prod.php
+  - ssh -p22 $SSH_USER_DEMO@$SSH_HOST_DEMO "cd $SSH_REMOTE_DIR_DEMO && git pull"
+  - ssh -p22 $SSH_USER_DEMO@$SSH_HOST_DEMO "cd $SSH_REMOTE_DIR_DEMO/project && composer install && ./yii migrate --interactive=0"
+  - ssh -p22 $SSH_USER_DEMO@$SSH_HOST_DEMO "rm -rf $SSH_REMOTE_DIR_DEMO/project/frontend/web/dist && mkdir $SSH_REMOTE_DIR_DEMO/project/frontend/web/dist && tar xzf $SSH_REMOTE_DIR_DEMO/dist.tar.gz -C $SSH_REMOTE_DIR_DEMO"
+  - ssh -p22 $SSH_USER_DEMO@$SSH_HOST_DEMO "cd $SSH_REMOTE_DIR_DEMO/project && composer run flush"
+
+prod_deploy:
+  image: alpine:latest
+  stage: deploy
+  only:
+    refs:
+    - production
+  script:
+  - 'which ssh-agent || ( apk --update add openssh-client bash )'
+  - mkdir -p ~/.ssh
+  - eval $(ssh-agent -s)
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  - bash -c 'ssh-add <(echo "$PRIVATE_KEY_PROD")'
+  - tar -czf /tmp/dist.tar.gz project/frontend/web/dist
+  - scp -P22 /tmp/dist.tar.gz $SSH_USER_PROD@$SSH_HOST_PROD:$SSH_REMOTE_DIR_PROD/dist.tar.gz
+  - scp -P22 project/frontend/config/assets-prod.php $SSH_USER_PROD@$SSH_HOST_PROD:$SSH_REMOTE_DIR_PROD/project/frontend/config/assets-prod.php
+  - ssh -p22 $SSH_USER_PROD@$SSH_HOST_PROD "cd $SSH_REMOTE_DIR_PROD && git pull"
+  - ssh -p22 $SSH_USER_PROD@$SSH_HOST_PROD "cd $SSH_REMOTE_DIR_PROD/project && composer install && ./yii migrate --interactive=0"
+  - ssh -p22 $SSH_USER_PROD@$SSH_HOST_PROD "rm -rf $SSH_REMOTE_DIR_PROD/project/frontend/web/dist && mkdir $SSH_REMOTE_DIR_PROD/project/frontend/web/dist && tar xzf $SSH_REMOTE_DIR_PROD/dist.tar.gz -C $SSH_REMOTE_DIR_PROD"
+  - ssh -p22 $SSH_USER_PROD@$SSH_HOST_PROD "cd $SSH_REMOTE_DIR_PROD/project && composer run flush"

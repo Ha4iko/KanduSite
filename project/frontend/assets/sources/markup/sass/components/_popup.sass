@@ -1,0 +1,95 @@
+.popups
+    position: fixed
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    width: 100%
+    height: 100%
+    z-index: -1
+    visibility: hidden
+    &.active
+        z-index: 99
+        visibility: visible
+    &.anime
+        .popups-bg
+            opacity: 0.95
+    &-bg
+        background: $bg2
+        opacity: 0
+        position: absolute
+        z-index: 1
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+        width: 100%
+        height: 100%
+        transition: $tr
+.popup
+    position: fixed
+    z-index: -1
+    visibility: hidden
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    width: 100%
+    height: 100%
+    transition: $tr
+    &.active
+        visibility: visible
+        z-index: 10
+    &.anime
+        .popup
+            &-main
+                opacity: 1
+                top: 0
+    &-wrap
+        position: relative
+        z-index: 2
+        height: 100%
+        padding: 30px 30px 60px
+        overflow-y: auto
+        -webkit-overflow-scrolling: touch
+        +md
+            padding: 0
+    &-main
+        max-width: 1290px
+        width: 100%
+        margin: auto
+        background-color: $bg
+        border-radius: 4px
+        padding: 60px
+        opacity: 0
+        position: relative
+        top: 50px
+        transition: $tr
+        +lg
+            padding: 30px
+        +md
+            padding: 20px
+        +sm
+            top: 0
+    &-close
+        margin-bottom: 30px
+        display: inline-flex
+        align-items: center
+        +md
+            margin-bottom: 20px
+        +sm
+            width: 100%
+            height: 56px
+            margin: -20px 0 0
+            transform: translateY(-2px)
+            .link-back
+                padding: 0
+                width: 100%
+                height: 100%
+    &-head, &-content
+        +defaultOffset('padding', 'bottom')
+        +defaultOffset('margin', 'bottom')
+        border-bottom: 2px solid $bg2
+        &:last-child
+            border: 0
+            padding: 0

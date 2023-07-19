@@ -1,0 +1,75 @@
+.share
+    display: flex
+    align-items: center
+    border-top: 2px solid $bg2
+    +defaultOffset('padding', 'top')
+    margin-top: 60px
+    +lg
+        margin-top: 30px
+    +md
+        margin-top: 20px
+    +sm
+        flex-wrap: wrap
+    &-title
+        color: $text2
+        min-height: 30px
+        display: flex
+        align-items: center
+        margin: 0 30px 0 0
+        padding-right: 30px
+        border-right: 2px solid $bg2
+        +lg
+            margin: 0 20px 0 0
+            padding-right: 20px
+            min-height: 20px
+        +md
+            margin: 0 10px 0 0
+            padding-right: 10px
+        +sm
+            margin: 0 0 14px
+            padding: 0
+            border: 0
+            width: 100%
+    &-list
+        display: flex
+        align-items: center
+        margin-right: 30px
+        padding-right: 30px
+        border-right: 2px solid $bg2
+        min-height: 30px
+        +lg
+            margin-right: 20px
+            padding-right: 20px
+            min-height: 20px
+        +md
+            margin-right: 10px
+            padding-right: 10px
+        &:last-child
+            margin-right: 0
+            padding-right: 0
+            border: 0
+    &-item
+        margin-right: 30px
+        padding-right: 30px
+        border-right: 2px solid $bg2
+        +lg
+            margin-right: 20px
+            padding-right: 20px
+        +md
+            margin-right: 10px
+            padding-right: 10px
+        &:last-child
+            margin-right: 0
+            padding-right: 0
+            border: 0
+    &-link
+        text-transform: uppercase
+        font-family: $r-b
+        min-height: 30px
+        +lg
+            min-height: 20px
+        &:hover
+            color: $primary
+    &-drop
+        .dropdown-result__text
+            color: $text2

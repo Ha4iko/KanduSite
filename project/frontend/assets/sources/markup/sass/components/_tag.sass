@@ -1,0 +1,62 @@
+.tags
+    display: flex
+    flex-wrap: wrap
+    margin: -5px
+    +md
+        margin: -3px
+    .tag
+        margin: 5px
+        +md
+            margin: 3px
+.tag
+    display: inline-flex
+    align-items: center
+    background-color: $text
+    border-radius: 5px
+    padding: 0 20px
+    height: 32px
+    color: $bg
+    text-transform: uppercase
+    font-size: 14px
+    line-height: 1
+    font-family: $r-b
+    +lg
+        padding: 0 10px
+        height: 20px
+        font-size: 12px
+    +md
+        padding: 0 5px
+        font-size: 10px
+        height: 18px
+    span
+        margin-left: 5px
+        color: $primary
+        font-size: 18px
+        display: inline-flex
+        align-items: center
+        line-height: 1
+        +lg
+            font-size: 14px
+        +md
+            font-size: 12px
+    &--sm
+        height: 24px
+        padding: 0 15px
+        +lg
+            padding: 0 10px
+            height: 20px
+            font-size: 12px
+        +md
+            padding: 0 5px
+            font-size: 10px
+            height: 18px
+    &--dark, &--progress, &--completed, &--pending
+        background-color: $bg2
+    &--dark
+        color: $text
+    &--progress
+        color: $success
+    &--completed
+        color: $primary
+    &--pending
+        color: $neutral

@@ -1,0 +1,71 @@
+.radios
+    .radio
+        margin-bottom: 30px
+        +lg
+            margin-bottom: 20px
+        &:last-child
+            margin-bottom: 0
+.radio
+    &--sm
+        .radio
+            &-text
+                +fluidFontSize(10px, 14px, $xs, $xl)
+    &-input
+        display: none
+        &:checked
+            &+.radio-content
+                .radio
+                    &-style
+                        &:after
+                            transform: scale(1)
+    &-label
+        display: inline-flex
+    &-content
+        position: relative
+        padding-left: 34px
+        min-height: 24px
+        display: flex
+        align-items: center
+        cursor: pointer
+        +lg
+            padding-left: 28px
+            min-height: 18px
+        &:hover
+            .radio
+                &-style
+                    border-color: $primary
+                &-text
+                    color: $primary
+    &-style
+        width: 24px
+        height: 24px
+        border-radius: 50%
+        background-color: $text
+        position: absolute
+        left: 0
+        top: 0
+        border: 1px solid $text
+        transition: $tr
+        +lg
+            width: 18px
+            height: 18px
+        &:after
+            content: ''
+            width: 12px
+            height: 12px
+            border-radius: 50%
+            position: absolute
+            top: 0
+            bottom: 0
+            left: 0
+            right: 0
+            margin: auto
+            background-color: $primary
+            transform: scale(0)
+            transition: $tr
+            +lg
+                width: 8px
+                height: 8px
+    &-text
+        line-height: 1
+        transition: $tr
