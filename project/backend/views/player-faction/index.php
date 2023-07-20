@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\models\PlayerFaction;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\PlayerFactionSearch */
@@ -19,7 +20,7 @@ $this->title = 'Player Factions';
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
+    <?=  GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => null,
         'columns' => [
@@ -27,6 +28,8 @@ $this->title = 'Player Factions';
 
             //'id',
             'name',
+            'avatar',
+
 
             [
                 'class' => 'yii\grid\ActionColumn',
