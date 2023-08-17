@@ -113,14 +113,12 @@ class Round extends ActiveRecord
             $duels = TeamDuel::find()
                 ->where(['round_id' => $this->id])
                 ->orderBy('order')
-                ->asArray()
                 ->all();
 
         } else {
             $duels = PlayerDuel::find()
                 ->where(['round_id' => $this->id])
                 ->orderBy('order')
-                ->asArray()
                 ->all();
         }
 
