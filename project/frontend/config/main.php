@@ -44,7 +44,7 @@ return [
                 //'preview' => '/tournament/preview',
                 'media/<slug>' => '/site-media/view',
                 'media' => '/site-media/index',
-                '<action:(thanks|donate|contacts|terms|privacy)>' => '/site/<action>',
+                '<action:(thanks|donate|contacts|terms|privacy|statick)>' => '/site/<action>',
                 'tournaments/type/<type>' => 'tournament/index',
                 'tournaments/<slug>/brackets/<id:\d+>' => '/tournament/brackets',
                 'tournaments/<slug>' => '/tournament/brackets',
@@ -59,7 +59,7 @@ return [
         'assetManager' => [
             'bundles' => YII_ENV_PROD ? require __DIR__ .  '/assets-prod.php' : require __DIR__ .  '/assets.php',
             'appendTimestamp' => true,
-            'forceCopy' => true,
+           // 'forceCopy' => true,
             'linkAssets' => true,
             'converter' => [
                 'class' => 'yii\web\AssetConverter',

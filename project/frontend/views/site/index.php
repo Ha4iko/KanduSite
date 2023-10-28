@@ -200,11 +200,11 @@ $this->title = 'Tournaments of World of Warcraft';
                                 </picture>
                             </div>
                             <div class="video-content">
-                                <iframe width="100%" height="600"
+                                <iframe width="100%" height="100%"
                                         src="<?= ArrayHelper::getValue(Yii::$app->params, 'settings.home_trailer_link', '') ?>"
                                         title="YouTube video player" frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen></iframe>
+                                        allowfullscreen></iframe>                                       
                             </div>
                         </div>
                     </div>

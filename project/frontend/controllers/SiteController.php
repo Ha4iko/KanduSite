@@ -100,6 +100,11 @@ class SiteController extends Controller
         return $this->render('contacts');
     }
 
+    public function actionStatick()
+    {
+        return $this->render('statick');
+    }
+
     /**
      * @return string
      * @throws \Exception

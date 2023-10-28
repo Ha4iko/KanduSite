@@ -51,13 +51,18 @@ foreach ($model->tournamentMediaNotEmpty as $tMedia) {
         <div class="mb">
             <div class="iframe">
                 <?php if ($videoData['type'] == TournamentMedia::TYPE_YOUTUBE) : ?>
-                    <iframe src="https://www.youtube.com/embed/<?= $videoData['video_id'] ?>" title="YouTube video player"
+                    <iframe src="https://www.youtube-nocookie.com/embed/<?= $videoData['video_id'] ?>" title="YouTube video player"
                             frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                 <?php endif; ?>
                 <?php if ($videoData['type'] == TournamentMedia::TYPE_TWITCH) : ?>
-                    <iframe src="https://player.twitch.tv/?video=<?= $videoData['video_id'] ?>&parent=<?= ArrayHelper::getValue(Yii::$app->params, 'settings.twitch_domain') ?>" title="Twitch video player"
-                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    <iframe src="https://player.twitch.tv/?autoplay=false&video=<?= $videoData['video_id'] ?>&parent=<?= ArrayHelper::getValue(Yii::$app->params, 'settings.twitch_domain') ?>" title="Twitch video player"
+                            frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            width="100%" height="100%" allowfullscreen></iframe>
+                <?php endif; ?>
+                <?php if ($videoData['type'] == TournamentMedia::TYPE_TWITCHSTREAM) : ?>
+                    <iframe src="https://player.twitch.tv/?autoplay=false&channel=<?= $videoData['video_id'] ?>&parent=<?= ArrayHelper::getValue(Yii::$app->params, 'settings.twitch_domain') ?>" title="Twitch video player"
+                            frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             width="100%" height="100%" allowfullscreen></iframe>
                 <?php endif; ?>
             </div>

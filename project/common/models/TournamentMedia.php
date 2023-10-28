@@ -20,6 +20,7 @@ class TournamentMedia extends \yii\db\ActiveRecord
     const TYPE_UNKNOWN = 'unknown';
     const TYPE_YOUTUBE = 'youtube';
     const TYPE_TWITCH = 'twitch';
+    const TYPE_TWITCHSTREAM = 'twitchstream';
 
 
     /**
@@ -90,7 +91,7 @@ class TournamentMedia extends \yii\db\ActiveRecord
                 ];
             } else if (!empty($text[1])){
                 return [
-                    'type' => self::TYPE_TWITCH,
+                    'type' => self::TYPE_TWITCHSTREAM,
                     'video_id' => $text[1],
                 ];
             }

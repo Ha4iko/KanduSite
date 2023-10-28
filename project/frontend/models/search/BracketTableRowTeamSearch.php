@@ -97,8 +97,8 @@ class BracketTableRowTeamSearch extends Model
             'key' => 'id',
             'allModels' => $tableRows,
             'pagination' => [
-                'pageSize' => 10,
-                'defaultPageSize' => 10,
+                'pageSize' => 256,
+                'defaultPageSize' => 256,
             ],
         ]);
 

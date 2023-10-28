@@ -113,8 +113,8 @@ class BracketTableRowSearch extends Model
             'key' => 'id',
             'allModels' => $tableRows,
             'pagination' => [
-                'pageSize' => 100,
-                'defaultPageSize' => 100,
+                'pageSize' => 256,
+                'defaultPageSize' => 256,
             ],
         ]);
 

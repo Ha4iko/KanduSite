@@ -63,7 +63,11 @@ $participants = $model->getParticipantsData();
                 </div>
             </div>
         </div>
-        <?php endforeach; ?>
+        <?php $arry_test[] = ['name' =>[$participant['player']->nick], 'class' => [$participant['params']->className], 'color' => [$participant['player']->getClassColor($model->id)], 'avatar' => [$participant['player']->getAvatar($model->id)]] ?>
+        <?php endforeach;
+         $nameJsom = Html::encode($model->title)?>
+        <?php $file = 'partisipants.json';
+        file_put_contents($file, json_encode($arry_test)); ?>      
     </div>
 <?php endif; ?>
 
