@@ -63,6 +63,12 @@ class TournamentExport
 			Yii::getAlias('@webroot') . '/assets/' . $tournament->slug . '.json', 
 			json_encode($result, JSON_UNESCAPED_UNICODE)
 		);
+		
+		if ($res !== false) {
+			echo 'SUCCESS UPDATE /assets/' . $tournament->slug . '.json';
+		} else {
+			echo 'ERROR UPDATE /assets/' . $tournament->slug . '.json';
+		}
 	}
 	
 	private function loadClassesMap(): void
