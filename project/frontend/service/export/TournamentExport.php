@@ -55,6 +55,7 @@ class TournamentExport
 			'title' => $tournament->title,
 			'status' => $tournament->status,
 			'brackets' => array_values($this->brackets),
+			'partisipants' => $this->getPartisipants(),
 		];
 		
 		$res = file_put_contents(
@@ -816,6 +817,22 @@ class TournamentExport
 			];
 		}
 		
+		return $result;
+	}
+	
+	private function getPartisipants(): array
+	{
+		$result = [];
+		
+		foreach ($this->players as $row) {
+			$result[] = [
+				'name' => (string) $row['nick'],
+				'class' => $this->classMap[$row['class_id']]['name'],
+				'color' => $this->classMap[$row['class_id']]['avatar'],
+				'avatar' => $this->raceMap[$row['race_id']]['avatar'],
+			];
+		}
+				
 		return $result;
 	}
 	
