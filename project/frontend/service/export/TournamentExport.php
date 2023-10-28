@@ -57,8 +57,6 @@ class TournamentExport
 			'brackets' => array_values($this->brackets),
 		];
 		
-		$this->debug($result);
-		
 		$res = file_put_contents(
 			Yii::getAlias('@webroot') . '/assets/' . $tournament->slug . '.json', 
 			json_encode($result, JSON_UNESCAPED_UNICODE)
