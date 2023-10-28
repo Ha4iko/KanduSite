@@ -673,6 +673,14 @@ class TournamentController extends Controller
             'model' => $model
         ]);
     }
+	
+    public function actionExport($slug)
+    {
+	$tournament = $this->findModel($slug);
+	(new \frontend\service\export\TournamentExport())->run($tournament);
+	
+	die();
+    }
 
     /**
      * @param $slug
