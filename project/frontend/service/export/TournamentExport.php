@@ -47,7 +47,7 @@ class TournamentExport
 		$this->loadRaceMap();
 		$this->loadWorldMap();
 		$this->loadPlayersMap();
-		
+				
 		$this->loadBrackets();
 		$this->loadRounds();
 		
@@ -141,11 +141,7 @@ class TournamentExport
 		);
 		
 		foreach ($res->queryAll() as $row)
-		{		
-			if ((int) $row['bracket_type'] === Bracket::TYPE_TABLE) {
-				continue;
-			}
-			
+		{					
 			$this->brackets[(int) $row['id']] = [
 				'id' => (int) $row['id'],
 				'type' => (int) $row['bracket_type'],
@@ -161,6 +157,7 @@ class TournamentExport
 		$this->loadSwissRounds();
 		$this->loadGroupRounds();
 		$this->loadFinalRounds();
+		$this->loadStandingRounds();
 	}
 	
 	private function loadSwissRounds(): void
@@ -834,6 +831,50 @@ class TournamentExport
 		}
 				
 		return $result;
+	}
+	
+	private function loadStandingRounds(): void
+	{
+		foreach ($this->brackets as &$bracket)
+		{
+			if ($bracket['type'] !== Bracket::TYPE_TABLE) {
+				continue;
+			}
+			
+			$rows = (new \common\services\BracketTableService())->getBracketTableRows($bracket['id']);
+			$headers = [];
+			
+			foreach ($rows as &$row) {
+				$row = [
+					'nick' => $row['nick'],
+					'class' => $row['class'],
+					'color' => $this->classMap[$row['class_id']]['avatar'],
+					'avatar' => $this->raceMap[$row['race_id']]['avatar'],
+					'race' => $row['race'],
+					'faction' => $row['faction'],
+					'faction_avatar' => IMG_ROOT . '/' . trim($this->factionMap[$row['faction_id']]['avatar']),
+					'world' => $row['world'],
+					'team' => $row['team'],
+					'columns' => array_map(
+						function ($col) {
+							return [
+								'title' => $col['title'],
+								'value' => $col['value'],
+							];
+						},
+						array_values($row['columns'] ?? [])
+					),
+				];
+						
+				if (empty($headers)) {
+					$headers = array_column($row['columns'], 'title');
+				}
+			}
+			
+			unset($bracket['rounds']);
+			$bracket['headers'] = $headers;
+			$bracket['rows'] = array_values($rows);
+		}
 	}
 	
 	private function debug($value): void
