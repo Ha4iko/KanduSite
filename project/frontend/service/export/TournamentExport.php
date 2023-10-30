@@ -394,7 +394,7 @@ class TournamentExport
 			$result[] = [
 				'id' => (int) $row['id'],
 				'name' => (string) $row['name'],
-				'color' => $player['color'],
+				'color' =>  (string) $this->classMap[$player['class_id']]['avatar'],
 				'play' => (int) $row['play'],
 				'win' => (int) $row['win'],
 				'lose' => (int) $row['lose'],
@@ -612,7 +612,7 @@ class TournamentExport
 						return [
 							'id' => (int) $row['id'],
 							'name' => (string) $row['name'],
-							'color' => $player['color'],
+							'color' => (string) $this->classMap[$player['class_id']]['avatar'],
 							'play' => (int) $row['play'],
 							'win' => (int) $row['win'],
 							'lose' => (int) $row['lose'],
