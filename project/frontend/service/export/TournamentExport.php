@@ -60,6 +60,7 @@ class TournamentExport
 		$this->loadRounds();
 
 		$result = [
+			'date' => date('Y-m-d H:i:s'),
 			'title' => $tournament->title,
 			'status' => $tournament->status,
 			'brackets' => array_values($this->brackets),
@@ -67,6 +68,8 @@ class TournamentExport
 		];
 		
 //		$this->debug($result);
+		
+		echo '2023-10-30 15:00<br>';
 
 		$res = file_put_contents(
 			Yii::getAlias('@webroot') . '/assets/' . $tournament->slug . '.json',
