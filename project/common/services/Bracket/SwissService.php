@@ -425,6 +425,9 @@ class SwissService
                     $result[$duel[$field]]['name'] = $duel['name_' . $field[strlen($field) - 1]];
                     $result[$duel[$field]]['external_link'] = $duel['external_link_' . $field[strlen($field) - 1]];
 
+
+                    if($bracket->best_of > 1){
+
                     if ($duel['active'] === '0') {
                         $result[$duel[$field]]['play'] += 1;
 
@@ -444,6 +447,27 @@ class SwissService
                             $result[$duel[$field]]['points'] += 3;
                         }
                     }
+                }else{
+                    if ($duel['active'] === '0') {
+                        $result[$duel[$field]]['play'] += 1;
+
+                        if (!$duel['winner_id']) { // ничья
+                            $result[$duel[$field]]['tie'] += 1;
+                            $result[$duel[$field]]['points'] += 0;
+                        } elseif ($duel['winner_id'] == $duel[$field]) { // выиграл
+                            $result[$duel[$field]]['win'] += 1;
+                            $result[$duel[$field]]['points'] += 1;
+                        } elseif ($duel['loser_id'] == $duel[$field]) { // проиграл
+                            $result[$duel[$field]]['lose'] += 1;
+                        }
+                    }
+
+                    if ($duel['active'] === '1') {
+                        if (($duel['name_1'] && !$duel['name_2']) || ($duel['name_2'] && !$duel['name_1'])) {
+                            $result[$duel[$field]]['points'] += 1;
+                        }
+                    }
+                }
                 }
             }
             
