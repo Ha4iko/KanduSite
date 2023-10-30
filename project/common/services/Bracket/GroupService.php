@@ -406,7 +406,7 @@ class GroupService
 
         if ($bracket->tournament->type->team_mode) {
             $duels = TeamDuel::find()->alias('d')->groupBy(['d.id'])
-                ->select('d.*, g.title as group_title, d.team_one_id as id_1, d.team_two_id as id_2, t1.name as name_1, t2.name as name_2')
+                ->select('d.*, g.title as group_title, g.order as group_order, d.team_one_id as id_1, d.team_two_id as id_2, t1.name as name_1, t2.name as name_2')
                 ->leftJoin(TournamentToTeam::tableName() . ' ttt1', 'ttt1.id = d.team_one_id')
                 ->leftJoin(Team::tableName() . ' t1', 't1.id = ttt1.team_id')
                 ->leftJoin(TournamentToTeam::tableName() . ' ttt2', 'ttt2.id = d.team_two_id')
@@ -420,7 +420,7 @@ class GroupService
                 ->all();
         } else {
             $duels = PlayerDuel::find()->alias('d')->groupBy(['d.id'])
-                ->select('d.*, g.title as group_title, d.player_one_id as id_1, d.player_two_id as id_2, p1.nick as name_1, p2.nick as name_2, p1.external_link as external_link_1, p2.external_link as external_link_2')
+                ->select('d.*, g.title as group_title, g.order as group_order, d.player_one_id as id_1, d.player_two_id as id_2, p1.nick as name_1, p2.nick as name_2, p1.external_link as external_link_1, p2.external_link as external_link_2')
                 ->leftJoin(TournamentToPlayer::tableName() . ' ttp1', 'ttp1.id = d.player_one_id')
                 ->leftJoin(Player::tableName() . ' p1', 'p1.id = ttp1.player_id')
                 ->leftJoin(TournamentToPlayer::tableName() . ' ttp2', 'ttp2.id = d.player_two_id')
@@ -448,6 +448,7 @@ class GroupService
                 $result[$duel['id_1']]['external_link'] = $duel['external_link_1'];
                 $result[$duel['id_1']]['group_id'] = $duel['group_id'];
                 $result[$duel['id_1']]['group_title'] = $duel['group_title'];
+                $result[$duel['id_1']]['group_order'] = $duel['group_order'];
 
                 if (!$duel['active']) {
                     $result[$duel['id_1']]['play'] += 1;
@@ -475,6 +476,7 @@ class GroupService
                 $result[$duel['id_2']]['external_link'] = $duel['external_link_2'];
                 $result[$duel['id_2']]['group_id'] = $duel['group_id'];
                 $result[$duel['id_2']]['group_title'] = $duel['group_title'];
+                $result[$duel['id_2']]['group_order'] = $duel['group_order'];
 
                 if (!$duel['active']) {
                     $result[$duel['id_2']]['play'] += 1;
@@ -500,6 +502,7 @@ class GroupService
                 $result[$duel['id_1']]['external_link'] = $duel['external_link_1'];
                 $result[$duel['id_1']]['group_id'] = $duel['group_id'];
                 $result[$duel['id_1']]['group_title'] = $duel['group_title'];
+                $result[$duel['id_1']]['group_order'] = $duel['group_order'];
 
                 if (!$duel['active']) {
                     $result[$duel['id_1']]['play'] += 1;
@@ -512,14 +515,15 @@ class GroupService
                         $result[$duel['id_1']]['points'] += 1;
                     } elseif ($duel['loser_id'] == $duel['id_1']) { // проиграл
                         $result[$duel['id_1']]['lose'] += 1;
-                    }                
+                    }
+                }
             }
-            //}
         }
 
         $grouped = [];
         foreach ($result as $partId => $partData) {
             $grouped[$partData['group_id']]['title'] = $partData['group_title'];
+            $grouped[$partData['group_id']]['order'] = $partData['group_order'];
             $grouped[$partData['group_id']]['participants'][$partId] = $partData;
         }
 
