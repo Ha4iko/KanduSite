@@ -15,6 +15,9 @@ class TournamentExport
 	
 	/** @var \common\services\Bracket\GroupService */
 	private $groupService;
+	
+	/** @var \common\services\Bracket\SwissService */
+	private $swissService;
 
 	/** @var array */
 	private $classMap = [];
@@ -41,6 +44,7 @@ class TournamentExport
 	{
 		$this->db = Yii::$app->db;
 		$this->groupService = Yii::$container->get(\common\services\Bracket\GroupService::class);
+		$this->swissService = Yii::$container->get(\common\services\Bracket\SwissService::class);
 	}
 
 	public function run(Tournament $tournament): void
@@ -167,7 +171,7 @@ class TournamentExport
 		}
 
 		$duels = $this->loadSwissDuels();
-		$standings = $this->getSwissStandings($duels);
+//		$standings = $this->getSwissStandings($duels);
 
 		$res = $this->db->createCommand(
 			"SELECT 
@@ -195,15 +199,19 @@ class TournamentExport
 				"title" => (string) $row['title'],
 				"duels" => $duels[(int) $row['id']] ?? [],
 			];
-
+			
 			if (isset($this->brackets[$key]['standings']) === false) {
-				$this->brackets[$key]['standings'] = array_filter(
-					$standings[$key] ?? [],
-					function ($row) {
-						return (int) $row['id'] > 0;
-					}
-				);
+				$this->brackets[$key]['standings'] = $this->getBracketSwissStanding($key);
 			}
+
+//			if (isset($this->brackets[$key]['standings']) === false) {
+//				$this->brackets[$key]['standings'] = array_filter(
+//					$standings[$key] ?? [],
+//					function ($row) {
+//						return (int) $row['id'] > 0;
+//					}
+//				);
+//			}
 		}
 	}
 
@@ -363,6 +371,43 @@ class TournamentExport
 			);
 		}
 
+		return $result;
+	}
+	
+	private function getBracketSwissStanding(int $bracketId): array
+	{
+		$result = [];
+
+		$rows = array_values($this->swissService->getStandings($bracketId));
+		
+		foreach ($rows as $row)
+		{
+			if ((int) $row['id'] === 0) {
+				continue;
+			}
+			
+			$player = $this->players[(int) $row['id']];
+			
+			$result[] = [
+				'id' => (int) $row['id'],
+				'name' => (string) $row['name'],
+				'color' => $player['color'],
+				'play' => (int) $row['play'],
+				'win' => (int) $row['win'],
+				'lose' => (int) $row['lose'],
+				'tie' => (int) $row['tie'],
+				'points' => (int) $row['points'],
+			];
+		}
+		
+		array_multisort(
+			array_column($result, 'points'),
+			SORT_DESC,
+			array_column($result, 'name'),
+			SORT_ASC,
+			$result
+		);
+		
 		return $result;
 	}
 
