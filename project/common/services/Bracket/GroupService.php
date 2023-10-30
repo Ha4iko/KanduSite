@@ -437,6 +437,7 @@ class GroupService
         $result = [];
         foreach ($duels as $duel) {
             //if ($duel['id_1']) {
+            if($bracket->best_of > 1){
                 if (!isset($result[$duel['id_1']]['play'])) $result[$duel['id_1']]['play'] = 0;
                 if (!isset($result[$duel['id_1']]['win'])) $result[$duel['id_1']]['win'] = 0;
                 if (!isset($result[$duel['id_1']]['lose'])) $result[$duel['id_1']]['lose'] = 0;
@@ -488,6 +489,31 @@ class GroupService
                         $result[$duel['id_2']]['lose'] += 1;
                     }
                 }
+            }else{
+                if (!isset($result[$duel['id_1']]['play'])) $result[$duel['id_1']]['play'] = 0;
+                if (!isset($result[$duel['id_1']]['win'])) $result[$duel['id_1']]['win'] = 0;
+                if (!isset($result[$duel['id_1']]['lose'])) $result[$duel['id_1']]['lose'] = 0;
+                if (!isset($result[$duel['id_1']]['tie'])) $result[$duel['id_1']]['tie'] = 0;
+                if (!isset($result[$duel['id_1']]['points'])) $result[$duel['id_1']]['points'] = 0;
+                $result[$duel['id_1']]['id'] = intval($duel['id_1']);
+                $result[$duel['id_1']]['name'] = $duel['name_1'];
+                $result[$duel['id_1']]['external_link'] = $duel['external_link_1'];
+                $result[$duel['id_1']]['group_id'] = $duel['group_id'];
+                $result[$duel['id_1']]['group_title'] = $duel['group_title'];
+
+                if (!$duel['active']) {
+                    $result[$duel['id_1']]['play'] += 1;
+
+                    if (!$duel['winner_id']) { // ничья
+                        $result[$duel['id_1']]['tie'] += 1;
+                        $result[$duel['id_1']]['points'] += 0;
+                    } elseif ($duel['winner_id'] == $duel['id_1']) { // выиграл
+                        $result[$duel['id_1']]['win'] += 1;
+                        $result[$duel['id_1']]['points'] += 1;
+                    } elseif ($duel['loser_id'] == $duel['id_1']) { // проиграл
+                        $result[$duel['id_1']]['lose'] += 1;
+                    }                
+            }
             //}
         }
 
